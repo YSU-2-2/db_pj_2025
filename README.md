@@ -22,7 +22,7 @@
   git switch 변경할브랜치명  
   브랜치 별 기능 설명
     - main : 배포
-    - development : main에 합치기 전에 테스트 하는 브랜치
+    - develop : main에 합치기 전에 테스트 하는 브랜치
     - features/~~~ : 뭐 ui를 만들었다거나 백엔드 기능을 추가하거나 할때 여기서 하면됨  
     ex) feature/login -> 이건 뭐 로그인 기능 개발했다는거겠죠?
   
@@ -42,9 +42,9 @@
         하면됨  
 #6. 최신 코드를 받아오는법  
   작업 이어서 할때 요거 하셔야됩니다  
-  프로젝트 루트 폴더에서 git pull origin development 라고 입력하면됨
+  프로젝트 루트 폴더에서 git pull origin develop 라고 입력하면됨
         
-#7. development 브랜치에 병합 pull requests 이건 내가 하지뭐  
+#7. 브랜치에 병합 pull requests 이건 내가 하지뭐  
   new pull request 클릭  
   base:development으로 설정 compare 작업한 브랜치명으로 변경  
   create pull request 클릭  
