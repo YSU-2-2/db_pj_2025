@@ -17,7 +17,7 @@ https://git-scm.com/install/
 
 프로젝트를 저장할 폴더로 이동해서 아래 명령어를 입력합니다.  
 
-git clone https://github.com/YSU-2-2/db_pj_2025.git  
+git clone -b develop https://github.com/YSU-2-2/db_pj_2025.git  
 이러면 현재 폴더에 db_pj_2025 폴더가 생성됩니다.  
 ## 2. 로컬에서 작업하고 푸시하는 법 (개요)  
 이 섹션은 전체 흐름 이해용입니다. 실제로는 3→4→6→5 순서로 진행하세요.  
