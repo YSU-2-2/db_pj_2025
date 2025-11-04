@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import '../css/login.css';
 import { Routes, Route, Link } from 'react-router-dom';
 import { loginStart, loginSuccess, loginFailure } from '../redux/slices/authSlice';
+import axios from 'axios';
 
 let Login = () => {
   const [username, setUsername] = useState('');
@@ -19,22 +20,20 @@ let Login = () => {
     dispatch(loginStart());
 
     try {
-      // TODO: 실제 API 호출로 대체 필요
-      // const response = await fetch('/api/login', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify({ username, password }),
-      // });
-      // const data = await response.json();
+      const response = await axios.post('http://localhost:5000/api/login/test', {
+        id: username,
+        pw: password
+      });
 
-      // 임시 로그인 성공 처리
-      setTimeout(() => {
-        dispatch(loginSuccess({
-          user: { username },
-          token: 'temporary-token',
-        }));
-        alert('로그인 성공!');
-      }, 1000);
+      console.log('서버 응답:', response.data);
+
+      // 서버에서 받은 JSON 데이터를 alert으로 출력
+      alert(`서버 응답:\n${JSON.stringify(response.data, null, 2)}`);
+
+      dispatch(loginSuccess({
+        user: { username },
+        token: 'temporary-token',
+      }));
     } catch (err) {
       dispatch(loginFailure(err.message));
       alert('로그인 실패: ' + err.message);
@@ -64,7 +63,7 @@ let Login = () => {
           onKeyDown={(e) => e.key === 'Enter' && handleLogin()}
         />
       </div>
-      {error && <div style={{color: 'red'}}>{error}</div>}
+      {error && <div style={{ color: 'red' }}>{error}</div>}
       <button
         className='login_button'
         onClick={handleLogin}

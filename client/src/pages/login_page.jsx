@@ -1,7 +1,7 @@
 import React from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
-import './App.css';
-import Login from './pages/login.jsx';
+import './../css/login.css';
+import Login from '../components/login.jsx';
 
 
 function App() {
