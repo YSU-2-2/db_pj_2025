@@ -1,81 +1,81 @@
 .login_component {
-    border: 1px solid #9771ff;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 40px;
-    flex-direction: column;
-    gap: 20px;
-    min-width: 300px;
+  border: 1px solid #9771ff;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 40px;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 300px;
 }
 
 .login_title {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 .login_subtitle {
-    margin-top: 0;
+  margin-top: 0;
 }
 
 .input_group {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
 }
 
 .input_group label {
-    font-weight: bold;
-    font-size: 14px;
+  font-weight: bold;
+  font-size: 14px;
 }
 
 .input_group input {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 14px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
 }
 
 .input_group input:focus {
-    outline: none;
-    border-color: #4CAF50;
+  outline: none;
+  border-color: #4CAF50;
 }
 
 .login_button {
-    width: 100%;
-    padding: 12px;
-    background-color: #9771ff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    margin-top: 10px;
+  width: 100%;
+  padding: 12px;
+  background-color: #9771ff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
 }
 
 .login_button:hover {
-    background-color: #45a049;
+  transform: scale(102%);
 }
 
 .signup {
-    display: flex;
-    gap: 10px;
+  display: flex;
+  gap: 10px;
 }
 
 .signup>a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .signup>a:first-child {
-    padding-right: 40px;
+  padding-right: 40px;
 }
 
 .signup>a {
-    text-decoration: none;
-    color: black;
+  text-decoration: none;
+  color: black;
 }

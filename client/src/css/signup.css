@@ -1,0 +1,15 @@
+.signup_component{
+  border: 1px solid #9771ff;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 40px;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 300px;
+}
