@@ -22,31 +22,41 @@ function Signup(props) {
 
 	//회원가입 버튼이 눌리면 실행되는 함수
 	let signup = async () => {
-
+		if (pw != pw2) {
+			alert("비밀번호가 일치하지 않습니다");
+		} else {
+			alert("비밀번호 일치");
+		}
 	}
 
 
 	return (
 		<div className='signup_component'>
-			<h1>회원가입</h1>
-			<input
-				type='text'
-				placeholder='아이디를 입력하세요'
-				value={id}
-				onChange={(e) => setId(e.target.value)}
-			/>
-			<input
-				type='password'
-				placeholder='비밀번호를 입력하세요'
-				value={pw}
-				onChange={(e) => setPw(e.target.value)}
-			/>
-			<input
-				type='password'
-				placeholder='비밀번호를 다시 입력하세요'
-				value={pw2}
-				onChange={(e) => setPw2(e.target.value)}
-			/>
+			<h1 className='signup_title'>회원가입</h1>
+			<div className='textbox'>
+				<span className='signup_subtitle'>아이디</span>
+				<input
+					type='text'
+					placeholder='아이디를 입력하세요'
+					value={id}
+					onChange={(e) => setId(e.target.value)}
+				/>
+				<span className='signup_subtitle'>비밀번호</span>
+				<input
+					type='password'
+					placeholder='비밀번호를 입력하세요'
+					value={pw}
+					onChange={(e) => setPw(e.target.value)}
+				/>
+				<span className='signup_subtitle'>비밀번호 확인</span>
+				<input
+					type='password'
+					placeholder='비밀번호를 다시 입력하세요'
+					value={pw2}
+					onChange={(e) => setPw2(e.target.value)}
+				/>
+			</div>
+
 			<button
 				className='signup_btn'
 				onClick={signup}
