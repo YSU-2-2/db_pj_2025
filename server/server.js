@@ -2,9 +2,14 @@
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
+import dotenv from 'dotenv';
 
 const app = express();
-const PORT = 5000;
+dotenv.config();
+const PORT = process.env.PORT||6000;
+
+// JSON pretty print 설정
+app.set('json spaces', 2);
 
 // Middleware
 app.use(cors({
@@ -16,6 +21,41 @@ app.use(bodyParser.json());
 // Routes
 app.get('/', (req, res) => {
   res.json({ message: 'Server is running' });
+});
+
+// API 목록 보기
+app.get('/api', (req, res) => {
+  const apiList = [];
+
+  // Express의 라우터 스택에서 라우트 추출
+  function extractRoutes(stack, basePath = '') {
+    stack.forEach((layer) => {
+      if (layer.route) {
+        // 일반 라우트
+        const methods = Object.keys(layer.route.methods).map(m => m.toUpperCase());
+        apiList.push({
+          method: methods.join(', '),
+          path: basePath + layer.route.path,
+          description: ''
+        });
+      } else if (layer.name === 'router' && layer.handle.stack) {
+        // 중첩된 라우터
+        extractRoutes(layer.handle.stack, basePath + (layer.regexp.source.match(/^\^\\(.*)\\\//)?.[1] || ''));
+      }
+    });
+  }
+
+  // app.router가 존재하면 사용, 아니면 app._router 사용
+  const router = app.router || app._router;
+  if (router && router.stack) {
+    extractRoutes(router.stack);
+  }
+
+  res.json({
+    message: 'API 목록',
+    totalApis: apiList.length,
+    apis: apiList
+  });
 });
 
 //api 연결 테스트

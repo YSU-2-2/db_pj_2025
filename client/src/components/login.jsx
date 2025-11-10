@@ -6,6 +6,8 @@ import { loginStart, loginSuccess, loginFailure } from '../redux/slices/authSlic
 import axios from 'axios';
 
 let Login = () => {
+  //환경변수 가져오기
+  const API_URL = import.meta.env.VITE_API_URL;
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
@@ -27,7 +29,7 @@ let Login = () => {
   dispatch(loginStart());
 
   try {
-    const response = await axios.post('http://localhost:5000/api/login/test', {
+    const response = await axios.post(`${API_URL}/api/login/test`, {
       id: username,
       pw: password
     });
