@@ -1,1 +1,1 @@
-사용 패키지 설치 명령어 - client 폴더에서 터미널 열고 npm install 치면 알아서 설치됨
+사용 패키지 설치 명령어 - client 폴더에서 터미널 열고 npm install 치면 package.json에 명시되어있는 라이브러리는 알아서 설치됨
