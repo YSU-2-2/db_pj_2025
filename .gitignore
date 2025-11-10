@@ -11,9 +11,14 @@ node_modules
 dist
 dist-ssr
 *.local
+
 #환경변수파일
-.env
-.env.*.local
+client/.env
+client/.env.*.local
+
+server/.env
+server/.env.*.local
+
 
 # Editor directories and files
 .vscode/*
