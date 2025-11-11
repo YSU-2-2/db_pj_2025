@@ -1,123 +1,6 @@
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
 import Navbar from '../components/Navbar';
-
-const Container = styled.div`
-  min-height: 100vh;
-  background-color: #f5f5f5;
-`;
-
-const ContentWrapper = styled.div`
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 2rem;
-`;
-
-const Title = styled.h1`
-  font-size: 2rem;
-  margin-bottom: 2rem;
-  color: #333;
-`;
-
-const CheckoutContainer = styled.div`
-  background: white;
-  border-radius: 8px;
-  padding: 2rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-`;
-
-const Section = styled.div`
-  margin-bottom: 2rem;
-  padding-bottom: 2rem;
-  border-bottom: 1px solid #e0e0e0;
-
-  &:last-child {
-    border-bottom: none;
-  }
-`;
-
-const SectionTitle = styled.h2`
-  font-size: 1.3rem;
-  color: #333;
-  margin-bottom: 1rem;
-`;
-
-const InfoRow = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding: 0.75rem 0;
-  color: #666;
-`;
-
-const InfoLabel = styled.span`
-  font-weight: 500;
-`;
-
-const InfoValue = styled.span`
-  color: #333;
-`;
-
-const OrderSummary = styled.div`
-  background-color: #f9f9f9;
-  padding: 1.5rem;
-  border-radius: 4px;
-  margin-top: 1rem;
-`;
-
-const SummaryRow = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding: 0.5rem 0;
-  color: #666;
-`;
-
-const TotalRow = styled(SummaryRow)`
-  font-size: 1.3rem;
-  font-weight: bold;
-  color: #333;
-  margin-top: 1rem;
-  padding-top: 1rem;
-  border-top: 2px solid #e0e0e0;
-`;
-
-const TotalPrice = styled.span`
-  color: #4a9eff;
-`;
-
-const PaymentButton = styled.button`
-  width: 100%;
-  padding: 1.2rem;
-  background-color: #4a9eff;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  font-size: 1.2rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  margin-top: 2rem;
-
-  &:hover {
-    background-color: #3a8eef;
-  }
-`;
-
-const CancelButton = styled.button`
-  width: 100%;
-  padding: 1rem;
-  background-color: #666;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  margin-top: 1rem;
-
-  &:hover {
-    background-color: #555;
-  }
-`;
+import './CheckoutPage.css';
 
 function CheckoutPage() {
   const navigate = useNavigate();
@@ -149,64 +32,64 @@ function CheckoutPage() {
   };
 
   return (
-    <Container>
+    <div className="checkout-container">
       <Navbar />
-      <ContentWrapper>
-        <Title>주문/결제</Title>
-        <CheckoutContainer>
-          <Section>
-            <SectionTitle>배송 정보</SectionTitle>
-            <InfoRow>
-              <InfoLabel>받는 사람</InfoLabel>
-              <InfoValue>{orderInfo.customerInfo.name}</InfoValue>
-            </InfoRow>
-            <InfoRow>
-              <InfoLabel>연락처</InfoLabel>
-              <InfoValue>{orderInfo.customerInfo.phone}</InfoValue>
-            </InfoRow>
-            <InfoRow>
-              <InfoLabel>배송지</InfoLabel>
-              <InfoValue>{orderInfo.customerInfo.address}</InfoValue>
-            </InfoRow>
-          </Section>
+      <div className="checkout-content-wrapper">
+        <h1 className="checkout-title">주문/결제</h1>
+        <div className="checkout-box">
+          <div className="checkout-section">
+            <h2 className="checkout-section-title">배송 정보</h2>
+            <div className="info-row">
+              <span className="info-label">받는 사람</span>
+              <span className="info-value">{orderInfo.customerInfo.name}</span>
+            </div>
+            <div className="info-row">
+              <span className="info-label">연락처</span>
+              <span className="info-value">{orderInfo.customerInfo.phone}</span>
+            </div>
+            <div className="info-row">
+              <span className="info-label">배송지</span>
+              <span className="info-value">{orderInfo.customerInfo.address}</span>
+            </div>
+          </div>
 
-          <Section>
-            <SectionTitle>주문 상품</SectionTitle>
+          <div className="checkout-section">
+            <h2 className="checkout-section-title">주문 상품</h2>
             {orderInfo.items.map((item, index) => (
-              <InfoRow key={index}>
-                <InfoLabel>{item.name} x {item.quantity}</InfoLabel>
-                <InfoValue>{(item.price * item.quantity).toLocaleString()}원</InfoValue>
-              </InfoRow>
+              <div key={index} className="info-row">
+                <span className="info-label">{item.name} x {item.quantity}</span>
+                <span className="info-value">{(item.price * item.quantity).toLocaleString()}원</span>
+              </div>
             ))}
-          </Section>
+          </div>
 
-          <Section>
-            <SectionTitle>결제 금액</SectionTitle>
-            <OrderSummary>
-              <SummaryRow>
+          <div className="checkout-section">
+            <h2 className="checkout-section-title">결제 금액</h2>
+            <div className="order-summary">
+              <div className="checkout-summary-row">
                 <span>상품 금액</span>
                 <span>{orderInfo.totalPrice.toLocaleString()}원</span>
-              </SummaryRow>
-              <SummaryRow>
+              </div>
+              <div className="checkout-summary-row">
                 <span>배송비</span>
                 <span>{orderInfo.shippingFee.toLocaleString()}원</span>
-              </SummaryRow>
-              <TotalRow>
+              </div>
+              <div className="checkout-total-row">
                 <span>총 결제 금액</span>
-                <TotalPrice>{finalTotal.toLocaleString()}원</TotalPrice>
-              </TotalRow>
-            </OrderSummary>
-          </Section>
+                <span className="checkout-total-price">{finalTotal.toLocaleString()}원</span>
+              </div>
+            </div>
+          </div>
 
-          <PaymentButton onClick={handlePayment}>
+          <button className="payment-button" onClick={handlePayment}>
             결제하기
-          </PaymentButton>
-          <CancelButton onClick={handleCancel}>
+          </button>
+          <button className="cancel-button" onClick={handleCancel}>
             취소
-          </CancelButton>
-        </CheckoutContainer>
-      </ContentWrapper>
-    </Container>
+          </button>
+        </div>
+      </div>
+    </div>
   );
 }
 

@@ -2,97 +2,8 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { login } from '../redux/slices/authSlice';
-import styled from 'styled-components';
 import Navbar from '../components/Navbar';
-
-const Container = styled.div`
-  min-height: 100vh;
-  background-color: #f5f5f5;
-`;
-
-const ContentWrapper = styled.div`
-  max-width: 400px;
-  margin: 0 auto;
-  padding: 2rem;
-`;
-
-const LoginBox = styled.div`
-  background: white;
-  border-radius: 8px;
-  padding: 2rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  margin-top: 4rem;
-`;
-
-const Title = styled.h1`
-  font-size: 2rem;
-  margin-bottom: 2rem;
-  color: #333;
-  text-align: center;
-`;
-
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-`;
-
-const InputGroup = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-`;
-
-const Label = styled.label`
-  color: #333;
-  font-weight: 500;
-`;
-
-const Input = styled.input`
-  padding: 0.75rem;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 1rem;
-  transition: border-color 0.3s;
-
-  &:focus {
-    outline: none;
-    border-color: #4a9eff;
-  }
-`;
-
-const Button = styled.button`
-  padding: 0.75rem;
-  background-color: #4a9eff;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  font-size: 1rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  margin-top: 1rem;
-
-  &:hover {
-    background-color: #3a8eef;
-  }
-`;
-
-const LinkText = styled.p`
-  text-align: center;
-  margin-top: 1rem;
-  color: #666;
-`;
-
-const StyledLink = styled(Link)`
-  color: #4a9eff;
-  text-decoration: none;
-  font-weight: 500;
-
-  &:hover {
-    text-decoration: underline;
-  }
-`;
+import './LoginPage.css';
 
 function LoginPage() {
   const [email, setEmail] = useState('');
@@ -118,15 +29,15 @@ function LoginPage() {
   };
 
   return (
-    <Container>
+    <div className="login-container">
       <Navbar />
-      <ContentWrapper>
-        <LoginBox>
-          <Title>로그인</Title>
-          <Form onSubmit={handleSubmit}>
-            <InputGroup>
-              <Label htmlFor="email">이메일</Label>
-              <Input
+      <div className="login-content-wrapper">
+        <div className="login-box">
+          <h1 className="login-title">로그인</h1>
+          <form className="login-form" onSubmit={handleSubmit}>
+            <div className="input-group">
+              <label htmlFor="email">이메일</label>
+              <input
                 id="email"
                 type="email"
                 value={email}
@@ -134,10 +45,10 @@ function LoginPage() {
                 placeholder="이메일을 입력하세요"
                 required
               />
-            </InputGroup>
-            <InputGroup>
-              <Label htmlFor="password">비밀번호</Label>
-              <Input
+            </div>
+            <div className="input-group">
+              <label htmlFor="password">비밀번호</label>
+              <input
                 id="password"
                 type="password"
                 value={password}
@@ -145,15 +56,15 @@ function LoginPage() {
                 placeholder="비밀번호를 입력하세요"
                 required
               />
-            </InputGroup>
-            <Button type="submit">로그인</Button>
-          </Form>
-          <LinkText>
-            계정이 없으신가요? <StyledLink to="/signup">회원가입</StyledLink>
-          </LinkText>
-        </LoginBox>
-      </ContentWrapper>
-    </Container>
+            </div>
+            <button type="submit" className="login-button">로그인</button>
+          </form>
+          <p className="link-text">
+            계정이 없으신가요? <Link to="/signup" className="styled-link">회원가입</Link>
+          </p>
+        </div>
+      </div>
+    </div>
   );
 }
 

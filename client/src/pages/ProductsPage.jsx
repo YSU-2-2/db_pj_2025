@@ -1,114 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
 import Navbar from '../components/Navbar';
-
-const Container = styled.div`
-  min-height: 100vh;
-  background-color: #f5f5f5;
-`;
-
-const ContentWrapper = styled.div`
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem;
-`;
-
-const Title = styled.h1`
-  font-size: 2rem;
-  margin-bottom: 2rem;
-  color: #333;
-`;
-
-const CategoryFilter = styled.div`
-  display: flex;
-  gap: 1rem;
-  margin-bottom: 2rem;
-  flex-wrap: wrap;
-`;
-
-const CategoryButton = styled.button`
-  padding: 0.75rem 1.5rem;
-  background-color: ${props => props.active ? '#4a9eff' : 'white'};
-  color: ${props => props.active ? 'white' : '#333'};
-  border: 2px solid ${props => props.active ? '#4a9eff' : '#ddd'};
-  border-radius: 4px;
-  font-size: 1rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s;
-
-  &:hover {
-    border-color: #4a9eff;
-    ${props => !props.active && 'background-color: #f0f8ff;'}
-  }
-`;
-
-const ProductGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 2rem;
-`;
-
-const ProductCard = styled.div`
-  background: white;
-  border-radius: 8px;
-  padding: 1.5rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
-  cursor: pointer;
-
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  }
-`;
-
-const ProductImage = styled.div`
-  width: 100%;
-  height: 200px;
-  background-color: #e0e0e0;
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 1rem;
-  color: #666;
-  font-size: 0.9rem;
-`;
-
-const ProductCategory = styled.div`
-  font-size: 0.85rem;
-  color: #4a9eff;
-  font-weight: 500;
-  margin-bottom: 0.5rem;
-`;
-
-const ProductName = styled.h3`
-  font-size: 1.1rem;
-  margin-bottom: 0.5rem;
-  color: #333;
-`;
-
-const ProductDescription = styled.p`
-  color: #666;
-  margin-bottom: 1rem;
-  font-size: 0.9rem;
-  line-height: 1.4;
-`;
-
-const ProductPrice = styled.div`
-  font-size: 1.3rem;
-  font-weight: bold;
-  color: #4a9eff;
-`;
-
-const NoProducts = styled.div`
-  text-align: center;
-  padding: 4rem 2rem;
-  color: #666;
-  font-size: 1.1rem;
-`;
+import './ProductsPage.css';
 
 function ProductsPage() {
   const navigate = useNavigate();
@@ -203,38 +96,38 @@ function ProductsPage() {
   };
 
   return (
-    <Container>
+    <div className="products-container">
       <Navbar />
-      <ContentWrapper>
-        <Title>가구 상품</Title>
-        <CategoryFilter>
+      <div className="products-content-wrapper">
+        <h1 className="products-title">가구 상품</h1>
+        <div className="category-filter">
           {categories.map(category => (
-            <CategoryButton
+            <button
               key={category}
-              active={selectedCategory === category}
+              className={`category-button ${selectedCategory === category ? 'active' : ''}`}
               onClick={() => handleCategoryClick(category)}
             >
               {category}
-            </CategoryButton>
+            </button>
           ))}
-        </CategoryFilter>
+        </div>
         {filteredProducts.length === 0 ? (
-          <NoProducts>해당 카테고리에 상품이 없습니다.</NoProducts>
+          <div className="no-products">해당 카테고리에 상품이 없습니다.</div>
         ) : (
-          <ProductGrid>
+          <div className="products-grid">
             {filteredProducts.map(product => (
-              <ProductCard key={product.id} onClick={() => handleProductClick(product.id)}>
-                <ProductImage>상품 이미지</ProductImage>
-                <ProductCategory>{product.category}</ProductCategory>
-                <ProductName>{product.name}</ProductName>
-                <ProductDescription>{product.description}</ProductDescription>
-                <ProductPrice>{product.price}원</ProductPrice>
-              </ProductCard>
+              <div key={product.id} className="products-card" onClick={() => handleProductClick(product.id)}>
+                <div className="products-image">상품 이미지</div>
+                <div className="products-category">{product.category}</div>
+                <h3 className="products-name">{product.name}</h3>
+                <p className="products-description">{product.description}</p>
+                <div className="products-price">{product.price}원</div>
+              </div>
             ))}
-          </ProductGrid>
+          </div>
         )}
-      </ContentWrapper>
-    </Container>
+      </div>
+    </div>
   );
 }
 
