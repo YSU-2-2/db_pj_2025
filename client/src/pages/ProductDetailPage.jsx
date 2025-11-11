@@ -1,158 +1,7 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import styled from 'styled-components';
 import Navbar from '../components/Navbar';
-
-const Container = styled.div`
-  min-height: 100vh;
-  background-color: #f5f5f5;
-`;
-
-const ContentWrapper = styled.div`
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem;
-`;
-
-const BackButton = styled.button`
-  padding: 0.75rem 1.5rem;
-  background-color: #666;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  margin-bottom: 2rem;
-
-  &:hover {
-    background-color: #555;
-  }
-`;
-
-const ProductDetailContainer = styled.div`
-  background: white;
-  border-radius: 8px;
-  padding: 2rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-`;
-
-const ProductLayout = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
-
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-  }
-`;
-
-const ProductImageSection = styled.div`
-  width: 100%;
-`;
-
-const ProductImage = styled.div`
-  width: 100%;
-  height: 400px;
-  background-color: #e0e0e0;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #666;
-  font-size: 1.2rem;
-`;
-
-const ProductInfoSection = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-`;
-
-const ProductName = styled.h1`
-  font-size: 2rem;
-  color: #333;
-  margin: 0;
-`;
-
-const ProductPrice = styled.div`
-  font-size: 2rem;
-  font-weight: bold;
-  color: #4a9eff;
-`;
-
-const ProductDescription = styled.div`
-  font-size: 1rem;
-  color: #666;
-  line-height: 1.6;
-`;
-
-const Divider = styled.hr`
-  border: none;
-  border-top: 1px solid #e0e0e0;
-  margin: 1rem 0;
-`;
-
-const ProductSpecs = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-`;
-
-const SpecItem = styled.div`
-  display: flex;
-  gap: 1rem;
-`;
-
-const SpecLabel = styled.span`
-  font-weight: 600;
-  color: #333;
-  min-width: 100px;
-`;
-
-const SpecValue = styled.span`
-  color: #666;
-`;
-
-const ButtonGroup = styled.div`
-  display: flex;
-  gap: 1rem;
-  margin-top: 1rem;
-`;
-
-const AddToCartButton = styled.button`
-  flex: 1;
-  padding: 1rem;
-  background-color: #4a9eff;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  font-size: 1.1rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background-color 0.3s;
-
-  &:hover {
-    background-color: #3a8eef;
-  }
-`;
-
-const BuyNowButton = styled.button`
-  flex: 1;
-  padding: 1rem;
-  background-color: #333;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  font-size: 1.1rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background-color 0.3s;
-
-  &:hover {
-    background-color: #222;
-  }
-`;
+import './ProductDetailPage.css';
 
 function ProductDetailPage() {
   const { id } = useParams();
@@ -195,42 +44,42 @@ function ProductDetailPage() {
   };
 
   return (
-    <Container>
+    <div className="product-detail-container">
       <Navbar />
-      <ContentWrapper>
-        <BackButton onClick={() => navigate(-1)}>← 뒤로 가기</BackButton>
-        <ProductDetailContainer>
-          <ProductLayout>
-            <ProductImageSection>
-              <ProductImage>상품 이미지</ProductImage>
-            </ProductImageSection>
-            <ProductInfoSection>
-              <ProductName>{productData.name}</ProductName>
-              <ProductPrice>{productData.price}</ProductPrice>
-              <Divider />
-              <ProductDescription>{productData.description}</ProductDescription>
-              <Divider />
-              <ProductSpecs>
+      <div className="product-detail-content-wrapper">
+        <button className="back-button" onClick={() => navigate(-1)}>← 뒤로 가기</button>
+        <div className="product-detail-box">
+          <div className="product-layout">
+            <div className="product-image-section">
+              <div className="product-detail-image">상품 이미지</div>
+            </div>
+            <div className="product-info-section">
+              <h1 className="product-detail-name">{productData.name}</h1>
+              <div className="product-detail-price">{productData.price}</div>
+              <hr className="product-divider" />
+              <div className="product-detail-description">{productData.description}</div>
+              <hr className="product-divider" />
+              <div className="product-specs">
                 {productData.specs.map((spec, index) => (
-                  <SpecItem key={index}>
-                    <SpecLabel>{spec.label}:</SpecLabel>
-                    <SpecValue>{spec.value}</SpecValue>
-                  </SpecItem>
+                  <div key={index} className="spec-item">
+                    <span className="spec-label">{spec.label}:</span>
+                    <span className="spec-value">{spec.value}</span>
+                  </div>
                 ))}
-              </ProductSpecs>
-              <ButtonGroup>
-                <AddToCartButton onClick={handleAddToCart}>
+              </div>
+              <div className="button-group">
+                <button className="add-to-cart-button" onClick={handleAddToCart}>
                   장바구니 담기
-                </AddToCartButton>
-                <BuyNowButton onClick={handleBuyNow}>
+                </button>
+                <button className="buy-now-button" onClick={handleBuyNow}>
                   바로 구매
-                </BuyNowButton>
-              </ButtonGroup>
-            </ProductInfoSection>
-          </ProductLayout>
-        </ProductDetailContainer>
-      </ContentWrapper>
-    </Container>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 

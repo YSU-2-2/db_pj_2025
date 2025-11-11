@@ -1,59 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../redux/slices/authSlice';
-import styled from 'styled-components';
-
-const NavbarContainer = styled.nav`
-  background-color: #333;
-  padding: 1rem 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-`;
-
-const Logo = styled(Link)`
-  color: white;
-  font-size: 1.5rem;
-  font-weight: bold;
-  text-decoration: none;
-  &:hover {
-    color: #ddd;
-  }
-`;
-
-const NavLinks = styled.div`
-  display: flex;
-  gap: 2rem;
-`;
-
-const NavLink = styled(Link)`
-  color: white;
-  text-decoration: none;
-  font-size: 1rem;
-  transition: color 0.3s;
-  &:hover {
-    color: #4a9eff;
-  }
-`;
-
-const LogoutButton = styled.button`
-  color: white;
-  background: none;
-  border: none;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: color 0.3s;
-  &:hover {
-    color: #4a9eff;
-  }
-`;
-
-const UserName = styled.span`
-  color: #4a9eff;
-  font-size: 1rem;
-  margin-right: 1rem;
-`;
+import './Navbar.css';
 
 function Navbar() {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
@@ -68,25 +16,25 @@ function Navbar() {
   };
 
   return (
-    <NavbarContainer>
-      <Logo to="/">쇼핑몰</Logo>
-      <NavLinks>
-        <NavLink to="/products">상품 목록</NavLink>
-        <NavLink to="/cart">장바구니</NavLink>
-        <NavLink to="/orders">주문내역</NavLink>
+    <nav className="navbar-container">
+      <Link to="/" className="navbar-logo">쇼핑몰</Link>
+      <div className="nav-links">
+        <Link to="/products" className="nav-link">상품 목록</Link>
+        <Link to="/cart" className="nav-link">장바구니</Link>
+        <Link to="/orders" className="nav-link">주문내역</Link>
         {isLoggedIn ? (
           <>
-            <UserName>{user?.name}님</UserName>
-            <LogoutButton onClick={handleLogout}>로그아웃</LogoutButton>
+            <span className="user-name">{user?.name}님</span>
+            <button onClick={handleLogout} className="logout-button">로그아웃</button>
           </>
         ) : (
           <>
-            <NavLink to="/login">로그인</NavLink>
-            <NavLink to="/signup">회원가입</NavLink>
+            <Link to="/login" className="nav-link">로그인</Link>
+            <Link to="/signup" className="nav-link">회원가입</Link>
           </>
         )}
-      </NavLinks>
-    </NavbarContainer>
+      </div>
+    </nav>
   );
 }
 
