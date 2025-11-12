@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
-import './ProductsPage.css';
+import './css/ProductsPage.css';
 
 function ProductsPage() {
   const navigate = useNavigate();

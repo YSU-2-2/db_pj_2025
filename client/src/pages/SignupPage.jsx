@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
-import './SignupPage.css';
+import './css/SignupPage.css';
 
 function SignupPage() {
   const [formData, setFormData] = useState({
@@ -87,7 +87,7 @@ function SignupPage() {
                 required
               />
             </div>
-            <button type="submit" className="signup-button">가입하기</button>
+            <button className="signup-button" type="submit">가입하기</button>
           </form>
           <p className="signup-link-text">
             이미 계정이 있으신가요? <Link to="/login" className="signup-styled-link">로그인</Link>

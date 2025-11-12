@@ -13,7 +13,7 @@ app.set('json spaces', 2);
 
 // Middleware
 app.use(cors({
-  origin: 'http://localhost:5173',
+  origin: true, // 모든 origin 허용 (개발 중)
   credentials: true
 }));
 app.use(bodyParser.json());
@@ -81,6 +81,34 @@ app.post('/api/login/test', (req, res) => {
       recievedId: id,
       recievedPw: pw
   });
+});
+
+// 테스트용 상품 데이터
+app.get('/api/products', (req, res) => {
+  console.log('상품 목록 요청 받음');
+  res.json([
+    {
+      id: 1,
+      name: '모던 패브릭 소파',
+      category: '소파',
+      description: '편안한 착석감의 3인용 소파',
+      price: 299000
+    },
+    {
+      id: 2,
+      name: '프리미엄 퀸 침대',
+      category: '침대',
+      description: '고급 원목 프레임의 퀸사이즈 침대',
+      price: 459000
+    },
+    {
+      id: 3,
+      name: '심플 원목 책상',
+      category: '책상',
+      description: '실용적인 디자인의 학습용 책상',
+      price: 189000
+    }
+  ]);
 });
 
 

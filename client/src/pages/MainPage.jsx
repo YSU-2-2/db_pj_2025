@@ -1,35 +1,54 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchProducts } from '../redux/slices/productsSlice';
 import Navbar from '../components/Navbar';
-import './MainPage.css';
+import './css/MainPage.css';
 
 function MainPage() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const recommendedProducts = [
-    {
-      id: 1,
-      name: '추천 상품 1',
-      description: '이 상품은 가장 인기있는 상품입니다.',
-      price: '29,900원'
-    },
-    {
-      id: 2,
-      name: '추천 상품 2',
-      description: '신상품으로 많은 분들이 찾고 계십니다.',
-      price: '39,900원'
-    },
-    {
-      id: 3,
-      name: '추천 상품 3',
-      description: '베스트셀러 상품입니다.',
-      price: '49,900원'
-    }
-  ];
+  // Redux에서 상품 데이터 가져오기
+  const { items: products, loading, error } = useSelector((state) => state.products);
+
+  // 컴포넌트 마운트 시 상품 데이터 가져오기
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, [dispatch]);
+
+  // 추천 상품 (처음 3개만)
+  const recommendedProducts = products.slice(0, 3);
 
   const handleProductClick = (productId) => {
     navigate(`/product/${productId}`);
   };
+
+  // 로딩 중일 때
+  if (loading) {
+    return (
+      <div className="main-container">
+        <Navbar />
+        <div className="main-content-wrapper">
+          <h1 className="main-title">추천 상품</h1>
+          <p>로딩 중...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // 에러 발생 시
+  if (error) {
+    return (
+      <div className="main-container">
+        <Navbar />
+        <div className="main-content-wrapper">
+          <h1 className="main-title">추천 상품</h1>
+          <p>에러 발생: {error}</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="main-container">

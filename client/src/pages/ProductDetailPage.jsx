@@ -1,7 +1,7 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Navbar from '../components/Navbar';
-import './ProductDetailPage.css';
+import './css/ProductDetailPage.css';
 
 function ProductDetailPage() {
   const { id } = useParams();

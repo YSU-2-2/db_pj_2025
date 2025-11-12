@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
-import './CheckoutPage.css';
+import './css/CheckoutPage.css';
 
 function CheckoutPage() {
   const navigate = useNavigate();

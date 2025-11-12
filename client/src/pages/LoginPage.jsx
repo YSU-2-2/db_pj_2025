@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { login } from '../redux/slices/authSlice';
 import Navbar from '../components/Navbar';
-import './LoginPage.css';
+import './css/LoginPage.css';
 
 function LoginPage() {
   const [email, setEmail] = useState('');
