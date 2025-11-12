@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 // 백엔드 API URL - 나중에 실제 서버 주소로 변경
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
 // 비동기 액션: 전체 상품 조회
 export const fetchProducts = createAsyncThunk(
